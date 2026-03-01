@@ -1,0 +1,44 @@
+<section class="catalogue">
+  <header class="catalogue-header">
+    <h2>Catalogue Accessoires Téléphoniques</h2>
+    <p>Gérez vos articles rapidement et proprement.</p>
+  </header>
+
+  <div class="card form-card">
+    <h3>Ajouter un article</h3>
+
+    <div class="form-grid">
+      <input type="number" placeholder="ID" [(ngModel)]="newArticle.id">
+      <input type="text" placeholder="Nom" [(ngModel)]="newArticle.nom">
+      <input type="text" placeholder="Description" [(ngModel)]="newArticle.description">
+      <input type="number" placeholder="Prix" [(ngModel)]="newArticle.prix">
+    </div>
+
+    <label class="stock-toggle">
+      <input type="checkbox" [(ngModel)]="newArticle.en_stock">
+      <span>En stock</span>
+    </label>
+
+    <button class="btn-primary" (click)="addArticle()">Ajouter</button>
+  </div>
+
+  <div class="card list-card">
+    <h3>Liste des articles</h3>
+
+    <ul class="article-list">
+      <li class="article-item" *ngFor="let article of articles">
+        <div class="article-content">
+          <strong>{{ article.nom }}</strong>
+          <span class="description">{{ article.description }}</span>
+          <span class="price">{{ article.prix }} €</span>
+        </div>
+
+        <div class="article-actions">
+          <span class="status in-stock" *ngIf="article.en_stock">✔ En stock</span>
+          <span class="status out-stock" *ngIf="!article.en_stock">❌ Rupture</span>
+          <button class="btn-danger" (click)="deleteArticle(article.id)">Supprimer</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
